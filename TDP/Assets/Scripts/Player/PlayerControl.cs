@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float raycastDist = default;
     // [SerializeField] private float keepDiagonalDirTime = default;
     // [SerializeField] private float keepDiagonalDirTimer = 0;
-    // private bool keepingDiagonalDir = false;
+    // [SerializeField] private bool keepingDiagonalDir = false;
     [SerializeField] private InputReader _inputReader = default;
 
     [SerializeField] private Rigidbody2D _rigidbody;
@@ -31,34 +31,36 @@ public class PlayerControl : MonoBehaviour
     private void ProcessMovement()
     {
         _rigidbody.MovePosition(_rigidbody.position + speed * moveDir * Time.fixedDeltaTime);
-        // keepDiagonalDirTimer -= (keepDiagonalDirTimer > 0 && keepingDiagonalDir) ? Time.fixedDeltaTime : 0;
+
+        // keepingDiagonalDir = !(keepDiagonalDirTimer <= 0);
+        // if (keepingDiagonalDir)
+        //     keepDiagonalDirTimer -= Time.fixedDeltaTime;
+
     }
 
     private void HandleMoveInput(Vector2 dir)
     {
         moveDir = dir;
 
-        // if (moveDir.magnitude != 0)
+        if (moveDir.magnitude == 0)
+            return;
+
+        // if (Mathf.Abs(facingDir.x) == Mathf.Abs(facingDir.y))
         // {
-        //     if (Mathf.Abs(facingDir.x) == Mathf.Abs(facingDir.y))
+        //     if (!keepingDiagonalDir)
         //     {
-        //         if (keepDiagonalDirTimer <= 0)
-        //         {
-        //             facingDir = moveDir;
-        //             keepDiagonalDirTimer = keepDiagonalDirTime;
-        //             keepingDiagonalDir = false;
-        //         }
-        //         else if (!keepingDiagonalDir)
-        //         {
-        //             keepingDiagonalDir = true;
-        //         }
-        //     }
-        //     else
-        //     {
+        //         transform.rotation = Quaternion.LookRotation(Vector3.back, moveDir);
+        //         facingDir = moveDir;
+        //         keepDiagonalDirTimer = keepDiagonalDirTime;
+        //         keepingDiagonalDir = true;
         //     }
         // }
-            transform.rotation = Quaternion.LookRotation(Vector3.back, moveDir);
-            facingDir = moveDir;
+        // else
+        // {
+        // }
+        transform.rotation = Quaternion.LookRotation(Vector3.back, moveDir);
+        facingDir = moveDir;
+
     }
 
     private void HandleInteractInput()
