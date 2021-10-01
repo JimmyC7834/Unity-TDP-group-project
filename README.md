@@ -1,6 +1,7 @@
 # 塔防 PARTY GAME (暫定)
 ### Created by:
 - [JimmyC7834](https://github.com/JimmyC7834)
+- [JoelLei121](https://github.com/JoelLei121)
 ---
 ## 概述
 塔防類型party game, 會有怪從四方八面跟住預定路線(暫定)進攻,
@@ -78,6 +79,14 @@
 - Setup GitHub, Unity, Vscode (+插件)
 - Clone 主要repo 到自己電腦上
 - 實習一次流程 -> 提交issue -> 改嘢 -> commit -> push -> PR -> review -> merge
+
+#### 完成進度：
+
+- [x] JimmyC
+- [x] JoelLei
+- [ ] DanielLao
+- [ ] JimmyY
+
 ---
 # 第一階段目標：基本地圖，玩家控制, 基本交互, 基本敵人AI
 ## 基本地圖
