@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 90addf389c72db741a0130a52303b52f
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 16a003991b9ef6a48a80c9b973a96eca
+    m_Address: Assets/Scenes/BasicPlayerMovement.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5102e0c5a74471d41aaadd15501d6c8f, type: 2}
   m_SchemaSet:

@@ -6,17 +6,16 @@ using TDP.Input;
 
 // TODO: complete InputReader
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-public class InputReader : ScriptableObject //, GameInput.IPointerActions, GameInput.IMenusActions
+public class InputReader : ScriptableObject, GameInput.IPlayerActions//, GameInput.IMenusActions
 {
-    // Pointer
+    // Player
     public event UnityAction<Vector2> moveEvent = delegate { };
-    public event UnityAction confirmEvent = delegate { };
-    public event UnityAction cancelEvent = delegate { };
+    public event UnityAction interactEvent = delegate { };
 
     // Menus
-    public event UnityAction<Vector2> menuMoveSelectionEvent = delegate { };
-    public event UnityAction menuConfirmEvent = delegate { };
-    public event UnityAction menuCancelEvent = delegate { };
+    // public event UnityAction<Vector2> menuMoveSelectionEvent = delegate { };
+    // public event UnityAction menuConfirmEvent = delegate { };
+    // public event UnityAction menuCancelEvent = delegate { };
 
     // !!! Remember to edit Input Reader functions upon updating the input map !!!
     private GameInput gameInput;
@@ -25,59 +24,51 @@ public class InputReader : ScriptableObject //, GameInput.IPointerActions, GameI
         if (gameInput == null) {
             gameInput = new GameInput();
 
-            // gameInput.Pointer.SetCallbacks(this);
+            gameInput.Player.SetCallbacks(this);
             // gameInput.Menus.SetCallbacks(this);
         }
 
-        // EnablePointerInput();
+        EnablePlayerInput();
     }
 
     private void OnDisable() {
 
     }
 
-    // -----POINTER-----
+    // -----PLAYER-----
     public void OnMove(InputAction.CallbackContext context)
     {
         moveEvent.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnConfirm(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-            confirmEvent.Invoke();
-    }
-
-    public void OnCancel(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-            cancelEvent.Invoke();
+            interactEvent.Invoke();
     }
 
     // -----MENUS-----
-    public void OnMenuMoveSelection(InputAction.CallbackContext context)
-    {
-        menuMoveSelectionEvent.Invoke(context.ReadValue<Vector2>());
-    }
+    // public void OnMenuMoveSelection(InputAction.CallbackContext context)
+    // {
+    //     menuMoveSelectionEvent.Invoke(context.ReadValue<Vector2>());
+    // }
 
-    public void OnMenuConfirm(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-            menuConfirmEvent.Invoke();
-    }
+    // public void OnMenuConfirm(InputAction.CallbackContext context)
+    // {
+    //     if (context.phase == InputActionPhase.Performed)
+    //         menuConfirmEvent.Invoke();
+    // }
 
-    public void OnMenuCancel(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-            menuCancelEvent.Invoke();
-    }
+    // public void OnMenuCancel(InputAction.CallbackContext context)
+    // {
+    //     if (context.phase == InputActionPhase.Performed)
+    //         menuCancelEvent.Invoke();
+    // }
 
     // Input Reader
-    // public void EnablePointerInput() {
-    //     gameInput.Menus.Disable();
-
-    //     gameInput.Pointer.Enable();
-    // }
+    public void EnablePlayerInput() {
+        gameInput.Player.Enable();
+    }
 
     // public void EnableMenusInput() {
     //     gameInput.Pointer.Disable();
@@ -85,8 +76,7 @@ public class InputReader : ScriptableObject //, GameInput.IPointerActions, GameI
     //     gameInput.Menus.Enable();
     // }
 
-    // public void DisableAllInput() {
-    //     gameInput.Pointer.Disable();
-    //     gameInput.Menus.Disable();
-    // }
+    public void DisableAllInput() {
+        gameInput.Player.Disable();
+    }
 }
