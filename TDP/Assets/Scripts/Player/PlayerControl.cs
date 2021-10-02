@@ -1,18 +1,23 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float speed = default;
-    [SerializeField] private Vector2 moveDir;
-    [SerializeField] private Vector2 facingDir = Vector2.up;
-    [SerializeField] private float raycastDist = default;
+    [SerializeField] private float speedMultiplier = 1;
+    [SerializeField] public Vector2 moveDir;
+    [SerializeField] public Vector2 facingDir = Vector2.up;
+
     // [SerializeField] private float keepDiagonalDirTime = default;
     // [SerializeField] private float keepDiagonalDirTimer = 0;
     // [SerializeField] private bool keepingDiagonalDir = false;
-    [SerializeField] private InputReader _inputReader = default;
 
+    [Space]
+    [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private Rigidbody2D _rigidbody;
+
+    [SerializeField] public UnityAction<Vector2> OnMove;
 
     private void OnEnable()
     {
@@ -20,7 +25,6 @@ public class PlayerControl : MonoBehaviour
         // keepDiagonalDirTimer = keepDiagonalDirTime;
 
         _inputReader.moveEvent += HandleMoveInput;
-        _inputReader.interactEvent += HandleInteractInput;
     }
 
     private void FixedUpdate()
@@ -30,7 +34,7 @@ public class PlayerControl : MonoBehaviour
 
     private void ProcessMovement()
     {
-        _rigidbody.MovePosition(_rigidbody.position + speed * moveDir * Time.fixedDeltaTime);
+        _rigidbody.MovePosition(_rigidbody.position + speed * speedMultiplier * moveDir * Time.fixedDeltaTime);
 
         // keepingDiagonalDir = !(keepDiagonalDirTimer <= 0);
         // if (keepingDiagonalDir)
@@ -58,18 +62,12 @@ public class PlayerControl : MonoBehaviour
         // else
         // {
         // }
-        transform.rotation = Quaternion.LookRotation(Vector3.back, moveDir);
         facingDir = moveDir;
-
+        OnMove?.Invoke(moveDir);
     }
 
-    private void HandleInteractInput()
+    public void SetSpeedMultiplier(float value)
     {
-        RaycastHit2D hit = Physics2D.Raycast(_rigidbody.position, facingDir, raycastDist);
-        Debug.DrawRay(_rigidbody.position, facingDir * raycastDist, Color.green, .1f);
-        if (hit)
-        {
-            Debug.Log($"{name} interacted facing {facingDir} hitted");
-        }
+        speedMultiplier = value;
     }
 }
