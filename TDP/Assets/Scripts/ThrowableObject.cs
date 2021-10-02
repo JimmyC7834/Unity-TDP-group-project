@@ -5,10 +5,16 @@ using UnityEngine;
 public class ThrowableObject : FakeHeightObject
 {
     [SerializeField] private float putDownDist = default;
+    // how much to slow the player
     public float slowMultiplier = default;
+    [Header("bounce values")]
+    [SerializeField] protected float bounceSpeedThreshold = default;
+    [SerializeField] protected float bounceSlowMultiplier = default;
+    [SerializeField] protected float initialVerticalVelocity = default;
     private Collider2D _collider;
     private Rigidbody2D _rigidbody;
     private Transform picker;
+
 
     private void OnEnable()
     {
@@ -35,9 +41,17 @@ public class ThrowableObject : FakeHeightObject
     {
         if (bodyTransform.position.y <= transform.position.y && !IsGrounded)
         {
-            IsGrounded = true;
-            bodyTransform.position = transform.position;
-            EnableGroundPhysics();
+            if (groundVelocity.magnitude > bounceSpeedThreshold)
+            {
+                Bounce();
+            }
+            else
+            {
+                IsGrounded = true;
+                bodyTransform.position = transform.position;
+                groundVelocity = Vector2.zero;
+                EnableGroundPhysics();
+            }
         }
     }
 
@@ -61,6 +75,12 @@ public class ThrowableObject : FakeHeightObject
         transform.SetParent(null);
         DisableGroundPhysics();
         Launch(dir * magnitude, magnitude, _initialHeight);
+        initialVerticalVelocity = magnitude;
+    }
+
+    protected virtual void Bounce()
+    {
+        Launch(groundVelocity * bounceSlowMultiplier, initialVerticalVelocity * bounceSlowMultiplier, 0);
     }
 
     public void PickUpBy(Transform _picker, float _height)
