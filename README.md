@@ -84,7 +84,7 @@
 
 - [x] JimmyC
 - [x] JoelLei
-- [ ] DanielLao
+- [x] DanielLao
 - [ ] JimmyY
 
 ---
