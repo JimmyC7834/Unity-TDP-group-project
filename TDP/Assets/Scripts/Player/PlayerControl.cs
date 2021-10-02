@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float speed = default;
+    [SerializeField] private float speedMultiplier = 1;
     [SerializeField] public Vector2 moveDir;
     [SerializeField] public Vector2 facingDir = Vector2.up;
 
@@ -33,7 +34,7 @@ public class PlayerControl : MonoBehaviour
 
     private void ProcessMovement()
     {
-        _rigidbody.MovePosition(_rigidbody.position + speed * moveDir * Time.fixedDeltaTime);
+        _rigidbody.MovePosition(_rigidbody.position + speed * speedMultiplier * moveDir * Time.fixedDeltaTime);
 
         // keepingDiagonalDir = !(keepDiagonalDirTimer <= 0);
         // if (keepingDiagonalDir)
@@ -63,5 +64,10 @@ public class PlayerControl : MonoBehaviour
         // }
         facingDir = moveDir;
         OnMove?.Invoke(moveDir);
+    }
+
+    public void SetSpeedMultiplier(float value)
+    {
+        speedMultiplier = value;
     }
 }

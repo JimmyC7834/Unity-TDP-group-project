@@ -12,7 +12,6 @@ public class FakeHeightObject : MonoBehaviour
     [SerializeField] protected float verticalVelocity = default;
     [SerializeField] protected Vector2 windVelocity = default;
     [SerializeField] protected bool _isGrounded = false;
-    [SerializeField]
     public virtual bool IsGrounded
     {
         get

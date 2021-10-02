@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  speedMultiplier: 1
   moveDir: {x: 0, y: 0}
   facingDir: {x: 0, y: 1}
   _inputReader: {fileID: 11400000, guid: 4b02f82f78e529a4bb73bd154ce020bf, type: 2}
@@ -548,10 +549,8 @@ MonoBehaviour:
   verticalVelocity: 0
   windVelocity: {x: 0, y: 0}
   _isGrounded: 0
-  putDownDist: 0.5
-  _collider: {fileID: 0}
-  _rigidbody: {fileID: 0}
-  picker: {fileID: 0}
+  putDownDist: 0.75
+  slowMultiplier: 0.85
 --- !u!58 &895864302
 CircleCollider2D:
   m_ObjectHideFlags: 0

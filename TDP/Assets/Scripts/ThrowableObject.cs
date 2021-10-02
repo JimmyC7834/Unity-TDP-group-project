@@ -5,9 +5,10 @@ using UnityEngine;
 public class ThrowableObject : FakeHeightObject
 {
     [SerializeField] private float putDownDist = default;
-    [SerializeField] private Collider2D _collider;
-    [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private Transform picker;
+    public float slowMultiplier = default;
+    private Collider2D _collider;
+    private Rigidbody2D _rigidbody;
+    private Transform picker;
 
     private void OnEnable()
     {
