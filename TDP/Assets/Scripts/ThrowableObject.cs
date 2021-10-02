@@ -80,7 +80,9 @@ public class ThrowableObject : FakeHeightObject
 
     protected virtual void Bounce()
     {
-        Launch(groundVelocity * bounceSlowMultiplier, initialVerticalVelocity * bounceSlowMultiplier, 0);
+        groundVelocity = groundVelocity * bounceSlowMultiplier;
+        verticalVelocity = initialVerticalVelocity * bounceSlowMultiplier;
+        EnableGroundPhysics();
     }
 
     public void PickUpBy(Transform _picker, float _height)
