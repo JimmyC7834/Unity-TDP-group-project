@@ -6,11 +6,11 @@ using Game.Framework.Pool;
 using Game.Framework.Factory;
 
 [CreateAssetMenu(menuName = "Pool/Example")]
-public class ExamplePool : PoolSO<GameObject>
+public class ExamplePool : ComponentPoolSO<ExampleClass>
 {
     public ExampleFactorySO _factory;
 
-    public override IFactory<GameObject> Factory
+    public override IFactory<ExampleClass> Factory
     {
         get
         {
