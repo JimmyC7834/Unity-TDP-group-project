@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2951004628457819654}
   - component: {fileID: 2951004628457819649}
   - component: {fileID: 2951004628457819648}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,9 +50,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.23}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.35
 --- !u!50 &2951004628457819652
 Rigidbody2D:
   serializedVersion: 4
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a51bdfb8f99474896d0e6778c22da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4
   speedMultiplier: 1
   moveDir: {x: 0, y: 0}
   facingDir: {x: 0, y: 1}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2951004628903114247}
   - component: {fileID: 2951004628903114246}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,8 +218,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2951004629233563905}
   - component: {fileID: 2951004629233563904}
-  m_Layer: 0
-  m_Name: head
+  m_Layer: 6
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2951004629369075458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Picked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2951004630170614979}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
