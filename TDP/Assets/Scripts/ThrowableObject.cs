@@ -56,12 +56,12 @@ public class ThrowableObject : FakeHeightObject
     }
 
     private void EnableGroundPhysics() {
-        _collider.enabled = true;
+        _collider.isTrigger = false;
         _rigidbody.WakeUp();
     }
 
     private void DisableGroundPhysics() {
-        _collider.enabled = false;
+        _collider.isTrigger = true;
         _rigidbody.Sleep();
     }
 

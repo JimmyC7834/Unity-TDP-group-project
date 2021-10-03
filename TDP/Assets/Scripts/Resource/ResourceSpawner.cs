@@ -29,7 +29,6 @@ public class ResourceSpawner : MonoBehaviour
             RandomlySpawnResource(resourceType);
         }
 
-        _pool.SetParent(transform);
         StartCoroutine(SpawnResourceAfterSec(timeInterval));
     }
 
@@ -73,7 +72,7 @@ public class ResourceSpawner : MonoBehaviour
 
     private void SpawnResourceObject(ResourceObject.Type type, Vector2 position)
     {
-        ResourceObject resource = _pool.Request();
+        ResourceObject resource = _pool.Request(type);
         resource.transform.position = position;
         resource.GetComponent<ThrowableObject>().Launch(Vector2.zero, spawnVerticalVelocity, .5f);
     }

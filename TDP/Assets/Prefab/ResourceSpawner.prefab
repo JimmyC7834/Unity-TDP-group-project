@@ -259,7 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pool: {fileID: 11400000, guid: 8fdbd20377345ad4a9365aedbfbdf086, type: 2}
   timeInterval: 15
-  resourceType: 0
+  resourceType: 1
   spawnVerticalVelocity: 2
   noSpawnRadius: 1
   spawnRadius: 2.5
