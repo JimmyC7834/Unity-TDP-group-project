@@ -15,6 +15,6 @@ MonoBehaviour:
   _factory: {fileID: 11400000, guid: e3eb3c42aa7511841b29917f05bb6884, type: 2}
   resourceData:
   - type: 0
-    sprite: {fileID: 7482667652216324306, guid: f3a37976fd803de4aa3ee632513b3e6e, type: 3}
+    sprite: {fileID: 21300000, guid: b8e050cd784feef47a23c2162e8be156, type: 3}
   - type: 1
-    sprite: {fileID: -2413806693520163455, guid: db4bf298319be7e4d86e9300562bb90e, type: 3}
+    sprite: {fileID: 21300000, guid: e81422e9b561a2b42a75dba684b9657e, type: 3}
