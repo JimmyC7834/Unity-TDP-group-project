@@ -35,7 +35,7 @@ public class ResourceSpawner : MonoBehaviour
     private void Update()
     {
         // if currently stopped but should spawn resource, continue
-        if (stopped && ShouldSpawnResource())
+        if (stopped && ResourceInRangeCount() < limitCount)
         {
             stopped = false;
             StartCoroutine(SpawnResourceAfterSec(timeInterval));
@@ -47,8 +47,8 @@ public class ResourceSpawner : MonoBehaviour
         yield return new WaitForSecondsRealtime(sec);
         RandomlySpawnResource(resourceType);
 
-        // check if limit is reached
-        if (ShouldSpawnResource())
+        // check if limit is reached, +1 because the resource just spawned didn't count
+        if (ResourceInRangeCount() + 1 < limitCount)
         {
             StartCoroutine(SpawnResourceAfterSec(timeInterval));
         }
@@ -58,9 +58,17 @@ public class ResourceSpawner : MonoBehaviour
         }
     }
 
-    private bool ShouldSpawnResource() {
-        resourceCountInRange = Physics2D.OverlapCircleAll(transform.position, limitCheckRadius, LayerMask.GetMask("ResourceObject")).Length;
-        return resourceCountInRange < limitCount;
+    private int ResourceInRangeCount() {
+        resourceCountInRange = 0;
+
+        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, limitCheckRadius, LayerMask.GetMask("ResourceObject"));
+        for (int i = 0; i < objects.Length; i++)
+        {
+            if (objects[i].GetComponent<ResourceObject>().type == resourceType)
+                resourceCountInRange++;
+        }
+
+        return resourceCountInRange;
     }
 
     private void RandomlySpawnResource(ResourceObject.Type type)
