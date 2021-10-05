@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 4144186669642142}
   - component: {fileID: 4144186669642143}
   - component: {fileID: 2658250937645270125}
-  - component: {fileID: 9205380666605313415}
+  - component: {fileID: 3094048963730091763}
   m_Layer: 7
-  m_Name: ResourceObject
+  m_Name: ResourceInteractObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,19 +119,15 @@ MonoBehaviour:
   bodyTransform: {fileID: 4144186413454669}
   shadowTransform: {fileID: 4144188038720721}
   gravity: -30
-  windVelocity: {x: 0, y: 0}
   groundVelocity: {x: 0, y: 0}
   verticalVelocity: 0
+  windVelocity: {x: 0, y: 0}
   _isGrounded: 0
-  interactable: {fileID: 0}
-  slowMultiplier: 0.8
   putDownDist: 0.5
-  putDownHeight: 0
-  pickUpHeight: 0
+  slowMultiplier: 0.8
   bounceSpeedThreshold: 0.2
   bounceSlowMultiplier: 0.25
   initialVerticalVelocity: 0
-  _sprite: {fileID: 3846499360954009578}
 --- !u!114 &2658250937645270125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   spriteRenderer: {fileID: 3846499360954009578}
---- !u!114 &9205380666605313415
+--- !u!114 &3094048963730091763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

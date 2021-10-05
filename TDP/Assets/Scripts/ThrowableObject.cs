@@ -1,20 +1,31 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(InteractableObject))]
 public class ThrowableObject : FakeHeightObject
 {
-    [SerializeField] private float putDownDist = default;
-    // how much to slow the player
+    public InteractableObject interactable;
+
+    [Header("Throw and Pick up values")]
+    [Tooltip("Slow down the player to x%")]
     public float slowMultiplier = default;
+    [SerializeField] private float putDownDist = default;
+    [SerializeField] private float putDownHeight = default;
+    [SerializeField] private float pickUpHeight = default;
+
     [Header("bounce values")]
     [SerializeField] protected float bounceSpeedThreshold = default;
     [SerializeField] protected float bounceSlowMultiplier = default;
     [SerializeField] protected float initialVerticalVelocity = default;
+    [SerializeField] private SpriteRenderer _sprite = default;
     private Collider2D _collider;
     private Rigidbody2D _rigidbody;
     private Transform picker;
 
+    public UnityAction OnThrown;
+    public UnityAction OnPickedUp;
 
     private void OnEnable()
     {
@@ -24,8 +35,35 @@ public class ThrowableObject : FakeHeightObject
             gameObject.SetActive(false);
         }
 
+        interactable = GetComponent<InteractableObject>();
         _collider = GetComponent<Collider2D>();
         _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Awake()
+    {
+        GetComponent<InteractableObject>().OnInteracted += HandleOnInteracted;
+    }
+
+    private void HandleOnInteracted(InteractableObject.InteractInfo info)
+    {
+        PlayerControl player = info.interactor.player;
+
+        // pick up this if the interactor didn't pick up an object
+        if (info.pickedObject == null)
+        {
+            PickUpBy(info.interactor.pickedTrans, pickUpHeight);
+            info.interactor.PickUpObject(this);
+        }
+        else if (info.pickedObject == this)
+        {
+            Throw(player.facingDir, info.interactor.throwStrength * player.moveDir.magnitude, putDownHeight);
+        }
+        else
+        {
+            info.pickedObject.Throw(player.facingDir, info.interactor.throwStrength * player.moveDir.magnitude, putDownHeight);
+        }
+
     }
 
     protected override void UpdatePhysics()
@@ -35,6 +73,9 @@ public class ThrowableObject : FakeHeightObject
         {
             _rigidbody.position = picker.position;
         }
+
+        // make the sprite larger is it's heighter
+        _sprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7.5f);
     }
 
     protected override void CheckGroundHit()
@@ -55,14 +96,23 @@ public class ThrowableObject : FakeHeightObject
         }
     }
 
-    private void EnableGroundPhysics() {
+    private void EnableGroundPhysics()
+    {
         _collider.isTrigger = false;
         _rigidbody.WakeUp();
     }
 
-    private void DisableGroundPhysics() {
+    private void DisableGroundPhysics()
+    {
         _collider.isTrigger = true;
         _rigidbody.Sleep();
+    }
+
+    protected virtual void Bounce()
+    {
+        groundVelocity = groundVelocity * bounceSlowMultiplier;
+        verticalVelocity = initialVerticalVelocity * bounceSlowMultiplier;
+        EnableGroundPhysics();
     }
 
     public void Throw(Vector2 dir, float magnitude, float _initialHeight)
@@ -76,13 +126,8 @@ public class ThrowableObject : FakeHeightObject
         DisableGroundPhysics();
         Launch(dir * magnitude, magnitude, _initialHeight);
         initialVerticalVelocity = magnitude;
-    }
 
-    protected virtual void Bounce()
-    {
-        groundVelocity = groundVelocity * bounceSlowMultiplier;
-        verticalVelocity = initialVerticalVelocity * bounceSlowMultiplier;
-        EnableGroundPhysics();
+        OnThrown?.Invoke();
     }
 
     public void PickUpBy(Transform _picker, float _height)
@@ -96,5 +141,7 @@ public class ThrowableObject : FakeHeightObject
 
         _rigidbody.Sleep();
         _isGrounded = true;
+
+        OnPickedUp?.Invoke();
     }
 }
