@@ -289,7 +289,7 @@ MonoBehaviour:
   interactable: {fileID: 0}
   slowMultiplier: 0.65
   putDownDist: 0.75
-  putDownHeight: 0
+  putDownHeight: 0.25
   pickUpHeight: 0
   bounceSpeedThreshold: 0.5
   bounceSlowMultiplier: 0.35

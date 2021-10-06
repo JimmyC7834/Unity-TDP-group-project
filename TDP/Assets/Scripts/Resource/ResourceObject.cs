@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(InteractableObject))]
+[RequireComponent(typeof(ThrowableObject))]
 public class ResourceObject : MonoBehaviour
 {
     public enum Type { type1, type2, COUNT };

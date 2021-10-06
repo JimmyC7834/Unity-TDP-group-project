@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4144186669642141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.188, y: 0.252, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4144187882718326}
@@ -126,7 +126,7 @@ MonoBehaviour:
   interactable: {fileID: 0}
   slowMultiplier: 0.8
   putDownDist: 0.5
-  putDownHeight: 0
+  putDownHeight: 0.25
   pickUpHeight: 0
   bounceSpeedThreshold: 0.2
   bounceSlowMultiplier: 0.25

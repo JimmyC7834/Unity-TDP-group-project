@@ -47,6 +47,9 @@ public class ThrowableObject : FakeHeightObject
 
     private void HandleOnInteracted(InteractableObject.InteractInfo info)
     {
+        if (!IsGrounded)
+            return;
+
         PlayerControl player = info.interactor.player;
 
         // pick up this if the interactor didn't pick up an object
@@ -61,7 +64,7 @@ public class ThrowableObject : FakeHeightObject
         }
         else
         {
-            info.pickedObject.Throw(player.facingDir, info.interactor.throwStrength * player.moveDir.magnitude, putDownHeight);
+            info.pickedObject.GetComponent<InteractableObject>().Interact(info);
         }
 
     }
@@ -74,7 +77,7 @@ public class ThrowableObject : FakeHeightObject
             _rigidbody.position = picker.position;
         }
 
-        // make the sprite larger is it's heighter
+        // make the sprite larger along its height
         _sprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7.5f);
     }
 
@@ -89,6 +92,7 @@ public class ThrowableObject : FakeHeightObject
             else
             {
                 IsGrounded = true;
+                _sprite.sortingOrder = 0;
                 bodyTransform.position = transform.position;
                 groundVelocity = Vector2.zero;
                 EnableGroundPhysics();
@@ -121,11 +125,13 @@ public class ThrowableObject : FakeHeightObject
         if (magnitude == 0)
             transform.position += (Vector3)dir * putDownDist;
 
-        picker = null;
         transform.SetParent(null);
         DisableGroundPhysics();
         Launch(dir * magnitude, magnitude, _initialHeight);
+
+        picker = null;
         initialVerticalVelocity = magnitude;
+        _sprite.sortingOrder = 1;
 
         OnThrown?.Invoke();
     }
@@ -134,12 +140,12 @@ public class ThrowableObject : FakeHeightObject
     {
         DisableGroundPhysics();
 
-        picker = _picker;
-
         transform.SetParent(_picker, true);
-        bodyTransform.position += Vector3.up * _height;
-
         _rigidbody.Sleep();
+
+        picker = _picker;
+        bodyTransform.position += Vector3.up * _height;
+        _sprite.sortingOrder = 1;
         _isGrounded = true;
 
         OnPickedUp?.Invoke();
