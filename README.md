@@ -86,7 +86,7 @@
 - [x] JimmyC
 - [x] JoelLei
 - [x] DanielLao
-- [ ] JimmyY
+- [x] JimmyY
 
 ---
 # 第一階段目標：基本地圖，玩家控制, 基本交互, 基本敵人AI
