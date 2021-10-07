@@ -2,6 +2,7 @@
 ### Created by:
 - [JimmyC7834](https://github.com/JimmyC7834)
 - [JoelLei121](https://github.com/JoelLei121)
+- [JimmyYeung25](https://github.com/JimmyYeung25)
 ---
 ## 概述
 塔防類型party game, 會有怪從四方八面跟住預定路線(暫定)進攻,
