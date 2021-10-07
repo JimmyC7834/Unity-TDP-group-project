@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7829183434965841420}
   - component: {fileID: 7829183434965841421}
   - component: {fileID: 7836616831482108943}
+  - component: {fileID: 3037104287033790350}
   m_Layer: 0
   m_Name: ResourceSpawner
   m_TagString: Untagged
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeInterval: 3
+  awakeStart: 1
   OnEarlyUpdate:
     m_PersistentCalls:
       m_Calls: []
@@ -105,6 +107,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3037104287033790350}
+        m_TargetAssemblyTypeName: ShakeAnimation, Assembly-CSharp
+        m_MethodName: StartAnimationFor
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3037104287033790350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829183434965841418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ed7fa342b79154d8aa6b6bce4ff5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformToShake: {fileID: 4183021352652830220}
+  shakeRadius: 0.1
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &4466708643658271378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -189,5 +218,10 @@ PrefabInstance:
 --- !u!4 &4183021352247174734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 572515813449936092, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+  m_PrefabInstance: {fileID: 4466708643658271378}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4183021352652830220 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 572515813850217630, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
   m_PrefabInstance: {fileID: 4466708643658271378}
   m_PrefabAsset: {fileID: 0}
