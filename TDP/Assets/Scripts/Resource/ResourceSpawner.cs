@@ -21,6 +21,10 @@ public class ResourceSpawner : MonoBehaviour
     [SerializeField] private int resourceCountInRange;
     [SerializeField] private bool stopped = false;
 
+    [Space]
+    [Header("Listening To")]
+    [SerializeField] private ResourceObjectEventChannel returnResourceObject = default;
+
     private void OnEnable()
     {
         // pre fill the range with resources
@@ -30,6 +34,11 @@ public class ResourceSpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnResourceAfterSec(timeInterval));
+    }
+
+    private void Awake()
+    {
+        returnResourceObject.OnEventRaised += (value) => _pool.Return(value);
     }
 
     private void Update()

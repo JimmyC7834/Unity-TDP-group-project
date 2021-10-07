@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   spriteRenderer: {fileID: 3846499360954009578}
+  returnResourceObject: {fileID: 11400000, guid: 9b3963638f722414782e3885212255ad, type: 2}
 --- !u!114 &9205380666605313415
 MonoBehaviour:
   m_ObjectHideFlags: 0

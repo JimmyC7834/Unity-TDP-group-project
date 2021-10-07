@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2951004628457819654}
   - component: {fileID: 2951004628457819649}
   - component: {fileID: 2951004628457819648}
+  - component: {fileID: 1477337855776976528}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -112,7 +113,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2951004628457819658}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a3126e78b74974ba1a455529be66ca, type: 3}
   m_Name: 
@@ -126,6 +127,25 @@ MonoBehaviour:
   putDownHeight: 0.15
   throwStrength: 7
   interactDist: 1
+--- !u!114 &1477337855776976528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951004628457819658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17bd968bfd32f9141a18cce8831c494f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2951004628457819654}
+  _inputReader: {fileID: 11400000, guid: 4b02f82f78e529a4bb73bd154ce020bf, type: 2}
+  _rigidbody: {fileID: 2951004628457819652}
+  pickedTrans: {fileID: 2951004629369075458}
+  throwStrength: 7.5
+  pickedObject: {fileID: 0}
+  interactDist: 1.5
 --- !u!1 &2951004628903114244
 GameObject:
   m_ObjectHideFlags: 0

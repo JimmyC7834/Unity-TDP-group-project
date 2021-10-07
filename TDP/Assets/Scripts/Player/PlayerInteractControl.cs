@@ -51,6 +51,7 @@ public class PlayerInteractControl : MonoBehaviour
                 // don't interact with picked object
                 if (pickedObject == null || pickedObject.interactable != interactableObject)
                 {
+                    Debug.Log($"interacted with {interactableObject.name}");
                     interactableObject.Interact(info);
                     return;
                 }

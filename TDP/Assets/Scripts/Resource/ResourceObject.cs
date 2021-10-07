@@ -7,6 +7,9 @@ public class ResourceObject : MonoBehaviour
     public Type type = default;
     [SerializeField] private SpriteRenderer spriteRenderer = default;
 
+    [Header("Broadcasting On")]
+    [SerializeField] private ResourceObjectEventChannel returnResourceObject = default;
+
     private void OnEnable() {
         if (gameObject.layer != LayerMask.NameToLayer("ResourceObject"))
             gameObject.layer = LayerMask.NameToLayer("ResourceObject");
@@ -17,4 +20,6 @@ public class ResourceObject : MonoBehaviour
         type = info.type;
         spriteRenderer.sprite = info.sprite;
     }
+
+    public void ReturnToPool() => returnResourceObject.RaiseEvent(this);
 }
