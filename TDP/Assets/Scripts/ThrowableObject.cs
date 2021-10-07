@@ -58,15 +58,15 @@ public class ThrowableObject : FakeHeightObject
             PickUpBy(info.interactor.pickedTrans, pickUpHeight);
             info.interactor.PickUpObject(this);
         }
-        else if (info.pickedObject == this)
+        else if (info.pickedObject == this) // throw this if this is picked
         {
             Throw(player.facingDir, info.interactor.throwStrength * player.moveDir.magnitude, putDownHeight);
         }
         else
         {
-            info.pickedObject.GetComponent<InteractableObject>().Interact(info);
+            // else interact the picked object
+            info.pickedObject.interactable.Interact(info);
         }
-
     }
 
     protected override void UpdatePhysics()
@@ -78,7 +78,7 @@ public class ThrowableObject : FakeHeightObject
         }
 
         // make the sprite larger along its height
-        _sprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7.5f);
+        _sprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7f);
     }
 
     protected override void CheckGroundHit()
@@ -91,13 +91,18 @@ public class ThrowableObject : FakeHeightObject
             }
             else
             {
-                IsGrounded = true;
-                _sprite.sortingOrder = 0;
-                bodyTransform.position = transform.position;
-                groundVelocity = Vector2.zero;
-                EnableGroundPhysics();
+                Land();
             }
         }
+    }
+
+    private void Land()
+    {
+        _sprite.sortingOrder = 0;
+        bodyTransform.position = transform.position;
+        groundVelocity = Vector2.zero;
+        EnableGroundPhysics();
+        IsGrounded = true;
     }
 
     private void EnableGroundPhysics()
