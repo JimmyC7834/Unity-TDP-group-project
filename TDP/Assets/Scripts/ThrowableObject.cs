@@ -31,7 +31,7 @@ public class ThrowableObject : FakeHeightObject
     {
         if (bodyTransform == null || shadowTransform == null)
         {
-            Debug.LogWarning($"missing bodyTransform or shadowTransform, please check your object");
+            Debug.LogWarning($"missing bodyTransform or shadowTransform, please check your object {name}");
             gameObject.SetActive(false);
         }
 
