@@ -5,18 +5,19 @@ using UnityEngine.Events;
 public class TimerTrigger : MonoBehaviour
 {
     [SerializeField] private float timeInterval = default;
-    [SerializeField] private bool awakeStart = default;
-    private bool awaked = false;
+    // [SerializeField] private bool awakeStart = default;
+    // private bool awaked = false;
     public UnityEvent OnEarlyUpdate;
     public UnityEvent OnLateUpdate;
 
     private void OnEnable()
     {
-        if (!awaked && !awakeStart)
-        {
-            awaked = true;
-            return;
-        }
+        // if (!awaked && !awakeStart)
+        // {
+        //     Debug.Log("awake");
+        //     awaked = true;
+        //     return;
+        // }
 
         StartCoroutine(Timer(timeInterval));
     }
