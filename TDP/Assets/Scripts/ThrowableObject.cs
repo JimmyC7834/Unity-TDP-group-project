@@ -124,18 +124,18 @@ public class ThrowableObject : FakeHeightObject
         EnableGroundPhysics();
     }
 
-    public void Throw(Vector2 dir, float magnitude, float _initialHeight)
+    public void Throw(Vector2 dir, float _verticalVelocity, float _initialHeight)
     {
         // put down the object if not moving
-        if (magnitude == 0)
+        if (_verticalVelocity == 0)
             transform.position += (Vector3)dir * putDownDist;
 
         transform.SetParent(null);
         DisableGroundPhysics();
-        Launch(dir * magnitude, magnitude, _initialHeight);
+        Launch(dir * _verticalVelocity, _verticalVelocity, _initialHeight);
 
         picker = null;
-        initialVerticalVelocity = magnitude;
+        initialVerticalVelocity = _verticalVelocity;
         _sprite.sortingOrder = 1;
 
         OnThrown?.Invoke();
