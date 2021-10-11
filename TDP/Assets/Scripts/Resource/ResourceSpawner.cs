@@ -80,16 +80,27 @@ public class ResourceSpawner : MonoBehaviour
 
     private void RandomlySpawnResource(ResourceObject.Type type)
     {
-        float a = Random.Range(0, 2 * Mathf.PI);
+        float a = Random.Range(-2 * Mathf.PI, 2 * Mathf.PI);
         float r = Random.Range(noSpawnRadius, spawnRadius);
-        SpawnResourceObjectAt(type, (Vector2)transform.position + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r);
+        SpawnResourceObjectTo(type, (new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r));
     }
 
-    private void SpawnResourceObjectAt(ResourceObject.Type type, Vector2 position)
+    private void SpawnResourceObjectAt(ResourceObject.Type type, Vector2 to)
     {
         ResourceObject resource = _pool.Request(type);
-        resource.transform.position = position;
+        resource.transform.position = (Vector2) transform.position + to;
         resource.throwableObject.Launch(Vector2.zero, spawnVerticalVelocity, .5f);
+    }
+
+    private void SpawnResourceObjectTo(ResourceObject.Type type, Vector2 to)
+    {
+        ResourceObject resource = _pool.Request(type);
+        resource.transform.position = transform.position;
+        resource.throwableObject.Throw(
+            to * resource.throwableObject.gravity / (2 * spawnVerticalVelocity) / spawnVerticalVelocity,
+            spawnVerticalVelocity,
+            0f
+            );
     }
 
     private void OnDrawGizmos()

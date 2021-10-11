@@ -7,7 +7,7 @@ public class FakeHeightObject : MonoBehaviour
     [SerializeField] protected Transform shadowTransform = default;
 
     [Header("Physics Values")]
-    [SerializeField] protected float gravity = default;
+    [SerializeField] public float gravity = default;
     [SerializeField] protected Vector2 windVelocity = default;
 
     [Header("Physics Debug Values")]

@@ -179,8 +179,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7829183434965841421, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
+      propertyPath: limitCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829183434965841421, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
       propertyPath: timeInterval
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829183434965841421, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
+      propertyPath: spawnVerticalVelocity
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7836616831482108943, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
       propertyPath: timeInterval
@@ -439,7 +447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeInterval: 1
-  awakeStart: 0
   OnEarlyUpdate:
     m_PersistentCalls:
       m_Calls:
@@ -576,8 +583,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7829183434965841421, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
+      propertyPath: limitCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829183434965841421, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
       propertyPath: resourceType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829183434965841421, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
+      propertyPath: spawnVerticalVelocity
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7836616831482108943, guid: 0c644ae605326534a8c464f29a3ab99d, type: 3}
       propertyPath: timeInterval

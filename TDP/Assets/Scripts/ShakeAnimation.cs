@@ -15,6 +15,7 @@ public class ShakeAnimation : MonoBehaviour
     public void StopAnimation()
     {
         StopAllCoroutines();
+        transformToShake.position = originalPosition;
     }
 
     public void StartAnimationFor(float time)
@@ -35,5 +36,7 @@ public class ShakeAnimation : MonoBehaviour
             transformToShake.position = originalPosition + new Vector3(Mathf.Cos(a), Mathf.Sin(a)) * r;
             yield return null;
         }
+
+        transformToShake.position = originalPosition;
     }
 }
