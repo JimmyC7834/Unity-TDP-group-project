@@ -40,7 +40,7 @@ public class PlayerPickControl : MonoBehaviour
         if (hit)
         {
             // handle throwable's pickup
-            ThrowableObject throwableObject = hit.rigidbody.gameObject.GetComponent<ThrowableObject>();
+            ThrowableObject throwableObject = hit.collider.gameObject.GetComponent<ThrowableObject>();
             if (throwableObject != null && pickedObject == null)
             {
                 throwableObject.PickUpBy(pickedTrans, pickUpHeight);

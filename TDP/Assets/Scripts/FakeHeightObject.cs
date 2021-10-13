@@ -37,8 +37,6 @@ public class FakeHeightObject : MonoBehaviour
             Debug.LogWarning($"missing bodyTransform or shadowTransform, please check your object");
             gameObject.SetActive(false);
         }
-
-        Launch(Vector2.up, 5, 0);
     }
 
     private void Update()
