@@ -8,11 +8,14 @@ public class FakeHeightObject : MonoBehaviour
 
     [Header("Physics Values")]
     [SerializeField] protected float gravity = default;
+    [SerializeField] protected Vector2 windVelocity = default;
+
+    [Header("Physics Debug Values")]
     [SerializeField] protected Vector2 groundVelocity = default;
     [SerializeField] protected float verticalVelocity = default;
-    [SerializeField] protected Vector2 windVelocity = default;
     [SerializeField] protected bool _isGrounded = false;
     public UnityAction OnGrounded;
+    public UnityAction OnLaunch;
 
     public virtual bool IsGrounded
     {
@@ -72,5 +75,7 @@ public class FakeHeightObject : MonoBehaviour
         verticalVelocity = _verticalVelocity;
         bodyTransform.position += Vector3.up * _initialHeight;
         _isGrounded = false;
+
+        OnLaunch?.Invoke();
     }
 }
