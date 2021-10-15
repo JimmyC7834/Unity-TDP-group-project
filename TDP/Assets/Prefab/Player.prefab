@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2951004628457819652}
   - component: {fileID: 2951004628457819654}
   - component: {fileID: 2951004628457819649}
-  - component: {fileID: 2951004628457819648}
   - component: {fileID: 1477337855776976528}
   m_Layer: 6
   m_Name: Player
@@ -106,27 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualTrans: {fileID: 2951004630170614979}
---- !u!114 &2951004628457819648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2951004628457819658}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a3126e78b74974ba1a455529be66ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  _inputReader: {fileID: 11400000, guid: 4b02f82f78e529a4bb73bd154ce020bf, type: 2}
-  _rigidbody: {fileID: 0}
-  pickedTrans: {fileID: 2951004629369075458}
-  pickedObject: {fileID: 0}
-  pickUpHeight: 0.5
-  putDownHeight: 0.15
-  throwStrength: 7
-  interactDist: 1
 --- !u!114 &1477337855776976528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 2951004628903114244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_Children: []
   m_Father: {fileID: 2951004630170614979}
   m_RootOrder: 0
