@@ -19,7 +19,7 @@ public class ThrowableObject : FakeHeightObject
     [SerializeField] protected float bounceSpeedThreshold = default;
     [SerializeField] protected float bounceSlowMultiplier = default;
     [SerializeField] protected float initialVerticalVelocity = default;
-    [SerializeField] private SpriteRenderer _sprite = default;
+    [SerializeField] private SpriteRenderer _bodySprite = default;
     private Collider2D _collider;
     private Rigidbody2D _rigidbody;
     private Transform picker;
@@ -78,7 +78,7 @@ public class ThrowableObject : FakeHeightObject
         }
 
         // make the sprite larger along its height
-        _sprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7f);
+        _bodySprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7f);
     }
 
     protected override void CheckGroundHit()
@@ -98,7 +98,7 @@ public class ThrowableObject : FakeHeightObject
 
     private void Land()
     {
-        _sprite.sortingOrder = 0;
+        _bodySprite.sortingOrder = 0;
         bodyTransform.position = transform.position;
         groundVelocity = Vector2.zero;
         EnableGroundPhysics();
@@ -136,7 +136,7 @@ public class ThrowableObject : FakeHeightObject
 
         picker = null;
         initialVerticalVelocity = _verticalVelocity;
-        _sprite.sortingOrder = 1;
+        _bodySprite.sortingOrder = 1;
 
         OnThrown?.Invoke();
     }
@@ -150,7 +150,7 @@ public class ThrowableObject : FakeHeightObject
 
         picker = _picker;
         bodyTransform.position += Vector3.up * _height;
-        _sprite.sortingOrder = 1;
+        _bodySprite.sortingOrder = 1;
         _isGrounded = true;
 
         OnPickedUp?.Invoke();

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6730212397780478497}
   - component: {fileID: 6730212397780478498}
   - component: {fileID: 6730212397780478496}
+  - component: {fileID: 4679822186530315982}
+  - component: {fileID: 6072322009548091603}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -90,6 +92,46 @@ MonoBehaviour:
   _rigidbody: {fileID: 0}
   _bodySprite: {fileID: 6527818803821602706}
   _returnEnemyToPool: {fileID: 11400000, guid: d90288b498b07c144bc1671fe559a76e, type: 2}
+--- !u!114 &4679822186530315982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6730212397780478508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8ae02b185b8304f90a8e29fe328653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6072322009548091603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6730212397780478508}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e14754999507104ab700c1e6082acab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyTransform: {fileID: 6527818803821602705}
+  shadowTransform: {fileID: 6527818803079740209}
+  gravity: -15
+  windVelocity: {x: 0, y: 0}
+  groundVelocity: {x: 0, y: 0}
+  verticalVelocity: 0
+  _isGrounded: 0
+  interactable: {fileID: 0}
+  slowMultiplier: 0.65
+  putDownDist: 0.75
+  putDownHeight: 0.25
+  pickUpHeight: 0.75
+  bounceSpeedThreshold: 0.2
+  bounceSlowMultiplier: 0.2
+  initialVerticalVelocity: 0
+  _bodySprite: {fileID: 6527818803821602706}
 --- !u!1001 &6730212399098567439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,8 +230,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 572515813449936092, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
   m_PrefabInstance: {fileID: 6730212399098567439}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &6527818803821602705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 572515813850217630, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+  m_PrefabInstance: {fileID: 6730212399098567439}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &6527818803821602706 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 572515813850217629, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+  m_PrefabInstance: {fileID: 6730212399098567439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6527818803079740209 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 572515813510996030, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
   m_PrefabInstance: {fileID: 6730212399098567439}
   m_PrefabAsset: {fileID: 0}
