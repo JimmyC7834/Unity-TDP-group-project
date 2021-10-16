@@ -8,18 +8,25 @@ public class EnemyRouteNode : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (nextNodes.Count == 0)
+        // skip if not enemy or if enemy is too far
+        EnemyController enemy = other.GetComponent<EnemyController>();
+        if (enemy == null || Vector2.Distance(transform.position, enemy.transform.position) > .01f)
             return;
 
-        EnemyController enemy = other.GetComponent<EnemyController>();
-        if (enemy == null || Vector2.Distance(transform.position, enemy.transform.position) > .1f)
+        // destory and return enemy to pool if this is the last node
+        if (nextNodes.Count == 0)
+        {
+            enemy.ReturnToPool();
             return;
+        }
 
         Debug.Log($"redirected {enemy.name} to {nextNodes.Peek()} : {nextNodes.Peek().transform.position}");
+        enemy.transform.position = transform.position;
         enemy.RedirectTo(nextNodes.Peek().transform);
         nextNodes.Enqueue(nextNodes.Dequeue());
     }
 
+    // update editor value
     private void OnValidate() {
         if (NextNodes == null)
             return;
@@ -31,6 +38,7 @@ public class EnemyRouteNode : MonoBehaviour
         }
     }
 
+    // draw debug line
     private void OnDrawGizmosSelected()
     {
         if (nextNodes == null)

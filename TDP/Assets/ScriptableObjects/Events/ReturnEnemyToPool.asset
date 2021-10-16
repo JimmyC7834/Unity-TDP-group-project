@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb6f894e701a8b499755490f8485950, type: 3}
-  m_Name: ReturnResourceObject
+  m_Script: {fileID: 11500000, guid: 79842d92d3e9384408a82e755ca90ddd, type: 3}
+  m_Name: ReturnEnemyToPool
   m_EditorClassIdentifier: 
-  description: fires to return a resourceObject to the pool
+  description: 

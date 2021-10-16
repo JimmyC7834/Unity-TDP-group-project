@@ -10,7 +10,10 @@ public class EnemyController : MonoBehaviour
 
     [Space]
     [SerializeField] private Rigidbody2D _rigidbody;
-    [SerializeField] private Sprite _bodySprite;
+    [SerializeField] private SpriteRenderer _bodySprite = default;
+
+    [Header("Broadcasting On")]
+    [SerializeField] private EnemyEventChannel _returnEnemyToPool = default;
 
     private void OnEnable()
     {
@@ -29,7 +32,7 @@ public class EnemyController : MonoBehaviour
     }
 
     public void Initialize(EnemyData data) {
-        _bodySprite = data.sprite;
+        _bodySprite.sprite = data.sprite;
         speed = data.speed;
     }
 
@@ -38,4 +41,6 @@ public class EnemyController : MonoBehaviour
         startPoint = nextPoint.position;
         nextPoint = targetPoint;
     }
+
+    public void ReturnToPool() => _returnEnemyToPool.RaiseEvent(this);
 }
