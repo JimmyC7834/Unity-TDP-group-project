@@ -99,7 +99,7 @@ MonoBehaviour:
   bounceSpeedThreshold: 0.5
   bounceSlowMultiplier: 0.35
   initialVerticalVelocity: 0
-  _sprite: {fileID: 423260363559723214}
+  _bodySprite: {fileID: 423260363559723214}
 --- !u!114 &4040725574023978501
 MonoBehaviour:
   m_ObjectHideFlags: 0
