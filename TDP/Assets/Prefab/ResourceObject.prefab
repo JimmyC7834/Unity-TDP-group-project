@@ -131,7 +131,7 @@ MonoBehaviour:
   bounceSpeedThreshold: 0.2
   bounceSlowMultiplier: 0.25
   initialVerticalVelocity: 0
-  _sprite: {fileID: 3846499360954009578}
+  _bodySprite: {fileID: 3846499360954009578}
 --- !u!114 &2658250937645270125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  throwableObject: {fileID: 0}
   spriteRenderer: {fileID: 3846499360954009578}
+  returnResourceObject: {fileID: 11400000, guid: 9b3963638f722414782e3885212255ad, type: 2}
 --- !u!114 &9205380666605313415
 MonoBehaviour:
   m_ObjectHideFlags: 0

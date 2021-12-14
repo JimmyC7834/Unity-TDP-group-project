@@ -19,7 +19,7 @@ public class ThrowableObject : FakeHeightObject
     [SerializeField] protected float bounceSpeedThreshold = default;
     [SerializeField] protected float bounceSlowMultiplier = default;
     [SerializeField] protected float initialVerticalVelocity = default;
-    [SerializeField] private SpriteRenderer _sprite = default;
+    [SerializeField] private SpriteRenderer _bodySprite = default;
     private Collider2D _collider;
     private Rigidbody2D _rigidbody;
     private Transform picker;
@@ -31,7 +31,7 @@ public class ThrowableObject : FakeHeightObject
     {
         if (bodyTransform == null || shadowTransform == null)
         {
-            Debug.LogWarning($"missing bodyTransform or shadowTransform, please check your object");
+            Debug.LogWarning($"missing bodyTransform or shadowTransform, please check your object {name}");
             gameObject.SetActive(false);
         }
 
@@ -58,15 +58,15 @@ public class ThrowableObject : FakeHeightObject
             PickUpBy(info.interactor.pickedTrans, pickUpHeight);
             info.interactor.PickUpObject(this);
         }
-        else if (info.pickedObject == this)
+        else if (info.pickedObject == this) // throw this if this is picked
         {
             Throw(player.facingDir, info.interactor.throwStrength * player.moveDir.magnitude, putDownHeight);
         }
         else
         {
-            info.pickedObject.GetComponent<InteractableObject>().Interact(info);
+            // else interact the picked object
+            info.pickedObject.interactable.Interact(info);
         }
-
     }
 
     protected override void UpdatePhysics()
@@ -78,7 +78,7 @@ public class ThrowableObject : FakeHeightObject
         }
 
         // make the sprite larger along its height
-        _sprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7.5f);
+        _bodySprite.transform.localScale = Vector2.one * (1 + (bodyTransform.position.y - shadowTransform.position.y)/7f);
     }
 
     protected override void CheckGroundHit()
@@ -91,13 +91,18 @@ public class ThrowableObject : FakeHeightObject
             }
             else
             {
-                IsGrounded = true;
-                _sprite.sortingOrder = 0;
-                bodyTransform.position = transform.position;
-                groundVelocity = Vector2.zero;
-                EnableGroundPhysics();
+                Land();
             }
         }
+    }
+
+    private void Land()
+    {
+        _bodySprite.sortingOrder = 0;
+        bodyTransform.position = transform.position;
+        groundVelocity = Vector2.zero;
+        EnableGroundPhysics();
+        IsGrounded = true;
     }
 
     private void EnableGroundPhysics()
@@ -119,19 +124,19 @@ public class ThrowableObject : FakeHeightObject
         EnableGroundPhysics();
     }
 
-    public void Throw(Vector2 dir, float magnitude, float _initialHeight)
+    public void Throw(Vector2 dir, float _verticalVelocity, float _initialHeight)
     {
         // put down the object if not moving
-        if (magnitude == 0)
+        if (_verticalVelocity == 0)
             transform.position += (Vector3)dir * putDownDist;
 
         transform.SetParent(null);
         DisableGroundPhysics();
-        Launch(dir * magnitude, magnitude, _initialHeight);
+        Launch(dir * _verticalVelocity, _verticalVelocity, _initialHeight);
 
         picker = null;
-        initialVerticalVelocity = magnitude;
-        _sprite.sortingOrder = 1;
+        initialVerticalVelocity = _verticalVelocity;
+        _bodySprite.sortingOrder = 1;
 
         OnThrown?.Invoke();
     }
@@ -145,7 +150,7 @@ public class ThrowableObject : FakeHeightObject
 
         picker = _picker;
         bodyTransform.position += Vector3.up * _height;
-        _sprite.sortingOrder = 1;
+        _bodySprite.sortingOrder = 1;
         _isGrounded = true;
 
         OnPickedUp?.Invoke();

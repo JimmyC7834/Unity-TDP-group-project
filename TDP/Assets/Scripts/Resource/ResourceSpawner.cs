@@ -5,9 +5,9 @@ public class ResourceSpawner : MonoBehaviour
 {
     // store prefabs of ResourceObjects, in the order of ResourceObject.Type
     [SerializeField] private ResourceObjectPool _pool = default;
+    [SerializeField] private TimerTrigger spawnTimer = default;
 
     [Header("Spawner Settings")]
-    [SerializeField] private float timeInterval = default;
     [SerializeField] private ResourceObject.Type resourceType = default;
     [SerializeField] private float spawnVerticalVelocity = default;
     [SerializeField] private float noSpawnRadius = default;
@@ -21,6 +21,10 @@ public class ResourceSpawner : MonoBehaviour
     [SerializeField] private int resourceCountInRange;
     [SerializeField] private bool stopped = false;
 
+    [Space]
+    [Header("Listening To")]
+    [SerializeField] private ResourceObjectEventChannel returnResourceObject = default;
+
     private void OnEnable()
     {
         // pre fill the range with resources
@@ -28,8 +32,11 @@ public class ResourceSpawner : MonoBehaviour
         {
             RandomlySpawnResource(resourceType);
         }
+    }
 
-        StartCoroutine(SpawnResourceAfterSec(timeInterval));
+    private void Awake()
+    {
+        returnResourceObject.OnEventRaised += (value) => _pool.Return(value);
     }
 
     private void Update()
@@ -38,27 +45,27 @@ public class ResourceSpawner : MonoBehaviour
         if (stopped && ResourceInRangeCount() < limitCount)
         {
             stopped = false;
-            StartCoroutine(SpawnResourceAfterSec(timeInterval));
+            spawnTimer.enabled = true;
         }
     }
 
-    private IEnumerator SpawnResourceAfterSec(float sec)
+    public void SpawnResourceOnTime()
     {
-        yield return new WaitForSecondsRealtime(sec);
+        if (stopped)
+            return;
+
         RandomlySpawnResource(resourceType);
 
         // check if limit is reached, +1 because the resource just spawned didn't count
-        if (ResourceInRangeCount() + 1 < limitCount)
-        {
-            StartCoroutine(SpawnResourceAfterSec(timeInterval));
-        }
-        else
+        if (ResourceInRangeCount() + 1 >= limitCount)
         {
             stopped = true;
+            spawnTimer.enabled = false;
         }
     }
 
-    private int ResourceInRangeCount() {
+    private int ResourceInRangeCount()
+    {
         resourceCountInRange = 0;
 
         Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, limitCheckRadius, LayerMask.GetMask("ResourceObject"));
@@ -73,16 +80,27 @@ public class ResourceSpawner : MonoBehaviour
 
     private void RandomlySpawnResource(ResourceObject.Type type)
     {
-        float a = Random.Range(0, 2 * Mathf.PI);
+        float a = Random.Range(-2 * Mathf.PI, 2 * Mathf.PI);
         float r = Random.Range(noSpawnRadius, spawnRadius);
-        SpawnResourceObject(type, (Vector2) transform.position + new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r);
+        SpawnResourceObjectTo(type, (new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * r));
     }
 
-    private void SpawnResourceObject(ResourceObject.Type type, Vector2 position)
+    private void SpawnResourceObjectAt(ResourceObject.Type type, Vector2 to)
     {
         ResourceObject resource = _pool.Request(type);
-        resource.transform.position = position;
-        resource.GetComponent<ThrowableObject>().Launch(Vector2.zero, spawnVerticalVelocity, .5f);
+        resource.transform.position = (Vector2) transform.position + to;
+        resource.throwableObject.Launch(Vector2.zero, spawnVerticalVelocity, .5f);
+    }
+
+    private void SpawnResourceObjectTo(ResourceObject.Type type, Vector2 to)
+    {
+        ResourceObject resource = _pool.Request(type);
+        resource.transform.position = transform.position;
+        resource.throwableObject.Throw(
+            to * resource.throwableObject.gravity / (2 * spawnVerticalVelocity) / spawnVerticalVelocity,
+            spawnVerticalVelocity,
+            0f
+            );
     }
 
     private void OnDrawGizmos()
