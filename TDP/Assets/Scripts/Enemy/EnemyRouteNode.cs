@@ -26,6 +26,7 @@ public class EnemyRouteNode : MonoBehaviour
         nextNodes.Enqueue(nextNodes.Dequeue());
     }
 
+#if UNITY_EDITOR
     // update editor value
     private void OnValidate() {
         if (NextNodes == null)
@@ -56,4 +57,5 @@ public class EnemyRouteNode : MonoBehaviour
             nextNodes.Enqueue(nextNodes.Dequeue());
         }
     }
+#endif
 }

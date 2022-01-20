@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6730212397780478496}
   - component: {fileID: 4679822186530315982}
   - component: {fileID: 6072322009548091603}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,6 +88,8 @@ MonoBehaviour:
   speed: 1
   speedMultiplier: 1
   startPoint: {x: 0, y: 0}
+  distance: 0
+  startTime: 0
   nextPoint: {fileID: 0}
   _rigidbody: {fileID: 0}
   _bodySprite: {fileID: 6527818803821602706}
@@ -139,6 +141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6730212397780478499}
     m_Modifications:
+    - target: {fileID: 572515812453336694, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 572515813449936092, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -187,6 +193,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visual
       objectReference: {fileID: 0}
+    - target: {fileID: 572515813449936093, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 572515813510996030, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.25
@@ -198,6 +208,10 @@ PrefabInstance:
     - target: {fileID: 572515813510996030, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 572515813510996031, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 572515813850217629, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
       propertyPath: m_Sprite
@@ -219,9 +233,17 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.69825095
       objectReference: {fileID: 0}
+    - target: {fileID: 572515813850217631, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 572515814102531102, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 572515814102531103, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3ded48eae09be545af630a4a3ab7e19, type: 3}

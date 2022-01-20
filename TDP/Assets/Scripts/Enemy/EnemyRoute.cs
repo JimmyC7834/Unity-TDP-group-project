@@ -9,7 +9,8 @@ public class EnemyRoute : MonoBehaviour
     [Header("Listening To")]
     [SerializeField] private EnemyEventChannel _returnEnemyToPool = default;
 
-    private void Awake() {
+    private void Awake()
+    {
         _returnEnemyToPool.OnEventRaised += (enemy) => _pool.Return(enemy);
     }
 
