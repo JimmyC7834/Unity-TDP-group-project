@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 836784382}
   - component: {fileID: 836784381}
   - component: {fileID: 836784380}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RouteNode (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 906133973}
   - component: {fileID: 906133972}
   - component: {fileID: 906133971}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RouteNode (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 912249140}
   - component: {fileID: 912249139}
   - component: {fileID: 912249138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RouteNode (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 1035148148}
   - component: {fileID: 1035148147}
   - component: {fileID: 1035148146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RouteNode (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 1910641854}
   - component: {fileID: 1910641853}
   - component: {fileID: 1910641852}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RouteNode (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   - component: {fileID: 1993362988}
   - component: {fileID: 1993362987}
   - component: {fileID: 1993362986}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RouteNode (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
